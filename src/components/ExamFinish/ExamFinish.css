@@ -1,0 +1,68 @@
+.exam-finish-wrapper{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color:var(--color-background) ;
+    display: flex;
+    align-items:center;
+    justify-content: center;
+  
+  }
+  .modal-container{
+      background: var(--primary);
+      width: 900px;
+      min-height: 200px;
+      position: relative;
+      max-width: calc(100% - 32px);
+      margin: 0 auto;
+      border-radius: 4px;
+      border: 1px solid var(--color-border);
+      
+  }
+  .result-heading{
+     color: var(--black);
+     margin-left: 25px;
+     margin-right: 58px;
+     font-size: 24px;
+     padding: 10px 0;
+  }
+  .infoResult{
+      display: flex;
+  }
+  .listQuestion{
+      width: 60%;
+      margin-left: 28px;
+  }
+  .answer{
+      display: flex;
+  }
+  .answer div:first-child{
+      width: 50%;
+  }
+  
+  .answer div:last-child{
+      width: 50%;
+  }
+  .scores{
+      width: 40%;
+      margin-right: 58px;
+      color: var(--black);
+      font-size: 24px;
+      margin-left: 20px;
+  }
+  .btnDashboard{
+      text-align: center;
+      margin: 20px 0 40px 0;
+  }
+  .btnDashboard button{
+      background: var(--background-button);
+      border-radius: 10rem;
+      padding: 10px 15px;
+      color: var(--black);
+      font-size: 24px;
+      border: none;
+      /* justify-items: center; */
+      
+  }
