@@ -28,41 +28,39 @@
      font-size: 24px;
      padding: 10px 0;
   }
-  .infoResult{
+  .info-result{
       display: flex;
   }
-  .listQuestion{
+  .list-result{
       width: 60%;
       margin-left: 28px;
   }
-  .answer{
+  .item-result{
       display: flex;
   }
-  .answer div:first-child{
+  .item-result div:first-child{
       width: 50%;
   }
   
-  .answer div:last-child{
+  .item-result div:last-child{
       width: 50%;
   }
-  .scores{
+  .score{
       width: 40%;
       margin-right: 58px;
       color: var(--black);
       font-size: 24px;
       margin-left: 20px;
   }
-  .btnDashboard{
+  .btn-result{
       text-align: center;
       margin: 20px 0 40px 0;
   }
-  .btnDashboard button{
-      background: var(--background-button);
+  .btn-result a{   
       border-radius: 10rem;
       padding: 10px 15px;
       color: var(--black);
       font-size: 24px;
-      border: none;
-      /* justify-items: center; */
+      background-color: var(--background-button)
       
   }

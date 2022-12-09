@@ -1,41 +1,50 @@
-import React from 'react';
-import BGPC from '../../assets/bgPC.png';
-import BGMB from '../../assets/bgMB.png';
-import CAMERA from '../../assets/camera.png';
-import USERNAME from '../../assets/username.png';
-import PASS from '../../assets/password.png';
-import './Login.css';
+import React from "react";
+import CAMERA from "../../assets/camera.png";
+import "./Login.css";
+import { Link } from "react-router-dom";
 const Login = () => {
   return (
-    <div className="wrapper">
-  <img className="appImg" width="100%" src={BGPC} alt="background" />
-  <img className="appImgMobile" width="100%" src={BGMB} alt="background" /> 
-  <div className="login">
-    <div className="loginImg">
-      <img src={CAMERA} width="100%" alt="camera" />
-    </div>
-    <form action className="loginForm">
-      <div className="loginInput">
-        <div className="iconUsername">
-          <img src={USERNAME} alt="username" />
-        </div>
-        <input type="text" name="username" placeholder="Username" id="username" />
-      </div>
-      <div className="loginInput">
-        <div className="iconPassword">
-          <img src={PASS} alt="password" />
-        </div>
-        <input type="password" name="password" placeholder="Password" id="password" />
-      </div>
-      <div className="checkPoint">
-        <input type="checkbox" />
-        <div className="disriptionLogin">Remember me</div>
-      </div>
-      <button className="btnLogin">Login</button>
-    </form>
-  </div>
-</div>
-  )
-}
+    <div className="login-container">
+      {/* <div className="login"> */}
+     
+        <form action className="login-form">
+          <div className="login-img">
+            <img src={CAMERA} width="100%" alt="camera" />
+          </div>
 
-export default Login
+          <div class="form-wrapper">
+          <div className="form-group">
+            <div className="icon-username">
+               <i className="icon far fa-user"></i>
+            </div>
+            <input
+              type="text"
+              name="username"
+              placeholder="Username"
+              id="username"
+            />
+          </div>
+          <div className="form-group">
+            <div className="icon-password">
+            <i className="icon fas fa-lock"></i>
+            </div>
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              id="password"
+            />
+          </div>
+          <div className="form-check">
+            <input type="checkbox" />
+            <div className="desc-login">Remember me</div>
+          </div>
+          <Link to="/dashboard" className="btn-login">Login</Link>
+        </div>
+        </form>
+      </div>
+    // </div>
+  );
+};
+
+export default Login;

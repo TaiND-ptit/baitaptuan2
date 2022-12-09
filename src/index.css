@@ -4,8 +4,10 @@
     --white: #fff;
     --black: #000;
     --color-border: #999595;
+    --color-border-yellow: #FBBC1A;
     --color-background: #D9D9D9;
     --background-button: #9F9D9F;
+    
 }
 
 * {
@@ -33,6 +35,10 @@ a {
 
 input, button {
     border: none;
+}
+
+button {
+    background: var(--background-button);
 }
 
 html *::-webkit-scrollbar {

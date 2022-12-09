@@ -1,0 +1,12 @@
+.item-question{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.item-question input{
+    margin-right: 20px;
+    height: 20px;
+    width: 20px;
+}

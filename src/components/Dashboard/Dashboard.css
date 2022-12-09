@@ -1,166 +1,212 @@
 
-.app{
-    position: fixed;
+.wrapper{
+    font-size: 20px;
     display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.mobile-header{
+    width: 100%;
+    position: fixed;
+    padding: 0.5em 0;
+    display: none;
+    color: #FFFFFF;
+    align-items: center;
+    background-color: #545151;
+
+}
+.mobile-heading{
+    width: 100%;
+    text-align:center;
+    font-size: 1em;
+}
+
+
+.mobile-header button{
+    background: transparent;
+    outline: none;
+    border: none;
+    width: 2.5em;
+    height: 2.5em;
+    position: relative;
+    left: 0.5em;
+}
+
+.mobile-header img {
+    width: 100%;
+}
+
+.layout{
+    position: fixed ;
     top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background-color: #F5F5F5;
-    /* width: 100vw;
-    height: 100vh; */
+    /* background: #000000; */
+    opacity: 0.7;
+    z-index:99;
 }
-.menu{
-     display: flex;
-     width: 20%;
-     height: 100%;
-     flex-direction: column;
-}
-.infoUer{
+
+.info{
+    width: 12em;
+    height: 100vh;
+    background: #D9D9D9;
+    border-right: 1px solid #929191;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1em 1em;
+    gap: 1em;
     flex-direction: column;
+    z-index:100;
 }
 
-.dashboardImg{
+.info-img{
+    background-image: url('../../assets/avatar.png');
+    background-repeat: no-repeat;
+    width: 8em;
+    height: 8em;
+    background-size: contain;
+    background-position: center; 
+}
+
+.info-detail{
     display: flex;
-    height: 80px;
-    width: 80px;
-    border: 1px solid #333;
-    border-radius: 50%;
-    margin: auto;
-    margin-top: 40px;
-    
-}
-.dashboardImg img {
-    width: 80px;
-}
-
-.username{
-  margin: 20px;
-  display: block;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.point{
-  margin:0 20px 20px 20px;
+    position: relative;
+    height: 80%;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 0.5em;
+    font-weight: bold;
+    font-size: 0.8em;
 }
 .logout{
-    position: absolute;
-    left: 60px;
-    bottom: 0;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    display: inline-block;
-}
-.logout button{
-    background: #F5F5F5;
-    text-transform: uppercase;
-    border: 1px solid #333;
-    padding: 10px 20px;
-    border-radius: 4px;
-    justify-content: center;
-    align-items: flex-end;
-    margin-bottom: 20px;
-}
-
-.listItem{
+    margin-top: auto;
+    margin-bottom: 1em;
     width: 80%;
-    background: #D9D9D9;
-    padding: 20px;
-    /* padding-top: 40px; */
-}
-.listTool{
-    display: flex;
-    padding: 20px 0;
-    justify-content: space-between;
-    
-}
-.dashboardSearch{
-    display: flex;
-    width: 60%;
 }
 
-#search, #cars{
-    border: none;
-    background: #F5F5F5;
+.btn-logout{
+    padding: 1em 3em;
+    font-size: 0.7em;
+    background: #C9CBCB;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.dashboard-container{
+    background-color: #C4C4C4;
+    padding: 1.5em 2em;
+    width: 100%;
+    height: 100%;
+
+}
+.filter{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+
+.search{
+    display: flex;
+    flex-direction: row;
+    flex: 5;
+    border: 1px solid #000000;
     border-radius: 4px;
-    padding-left: 20px;
-}
-
-#cars{
-    width: 30%;
-}
-#search{
-    width: 90%;
-}
-
-.btnSearch{
-    width: 10%;
-}
-/* .listResults{
-    display: flex;
-    background: #F5F5F5;
-    justify-content: space-around;
-} */
-.containerResult{
-    display: flex;
-    background: #F5F5F5;
-    justify-content: space-around;
-}
-.listItemReasult{
-    width: 400px;
-    border: 1px solid #333;
-    margin: 20px 0;
-    padding: 20px;
-}
-.resultHeading{
-    margin-bottom: 10px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 1;
-    text-overflow: ellipsis;
     overflow: hidden;
 }
-.iconResult{
-    display: flex;
-    margin-bottom: 10px;
 
-}
-.times, .sumResult{
-    display: flex;
-
-}
-.times img, .sumResult img{
-    margin-right: 10px;
+.search input {
+    background: #F3F1F1;
+    border: 1px solid #000000;
+    font-size: 0.8em;
+    padding: 0.5em 1em;
+    width: 100%;
+    border: none;
+    outline: none; 
 }
 
-.times {
-    margin-right: 30px;
+.btn-search{
+    padding: 0.5em 1em;
+    font-size: 0.8em;
+    background: #FFFFFF;
 }
+
+select {
+    border: 1px solid #000000;
+    outline: none;
+    border-radius: 4px;
+    flex:2;
+}
+
+.test-container{
+    background-color: #D9D9D9;
+    padding: 2em;
+    margin-top: 1.5em;
+    overflow-y: hidden;
+}
+
+.list-item-result{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    row-gap: 2em;
+    column-gap: 2em;
+    font-size: 17px;
+  
+}
+
 .pagination{
+    margin-top: 1em;
     display: flex;
+    gap: 0.5em;
     justify-content: center;
 }
 
-.pagination a {
-    color: black;
-    margin-top: 40px;
-    text-align: center;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
+.pagination button {
+    width: 2.5em;
+    height: 2.5em;
+    font-size: 0.7em; 
+}
+
+.pagination button i {
+    font-size: 0.7em;
+}
+@media(max-width:63.9375em){
+    .info{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
     }
-    /* set the style for the active class */
-    .pagination a.active {
-    background-color: dodgerblue;
-    color: white;
+
+    .dashboard-container{
+        margin-left: 10em;
     }
-    /* add background color when user hovers on inactive class */
-    .pagination a:hover:not(.active) {
-    background-color: #ddd;
+}
+@media(max-width:46.1875em){
+    .mobile-header{
+        display: flex;
     }
+    .info{
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        /* transform: ${(props) =>
+            props.isShow ? "translateX(0)" : "translateX(-100%)"
+ 
+        }; */
+          transition: all 0.3s;
+    }
+
+    .dashboard-container{
+        margin-top: 2em;
+        margin-left: 0;
+        padding: 1.5em 0.5em;
+    }
+
+    select {
+        display: none;
+    }
+}

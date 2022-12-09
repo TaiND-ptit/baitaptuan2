@@ -13,9 +13,12 @@
     width: 80%;
 
 }
+
 .times{
     border: 1px solid #333;
     padding: 35px 30px 20px 25px;
+    display: flex;
+    flex-direction: column;
 }
 
 .nameExam{
@@ -31,36 +34,16 @@
     height: 100%;
 
 }
-.subcriptionquestion{
+.desc-question{
     padding: 40px 60px 40px 30px;
 }
 
-.choosequestion{
+.choose-question{
     display: flex;
     flex-direction: column;
     padding-left: 60px;
     justify-content: center;
 }
-.itemquestion{
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    margin-bottom: 10px;
-}
-
-.itemquestion input{
- 
-    margin-right: 20px;
-}
-
-input[type="checkbox"] {
-    height: 20px;
-    width: 20px;
-    border-radius: 4px;
-   
-}
-
-
 
 .checkbox, .question{
     display: flex;
@@ -111,7 +94,7 @@ button {
 .btn_submit{
     text-align: center;
 }
-.btn_submit button{
+.btn_submit a{
     background-color: #D9D9D9;
     border-radius: 10rem;
     padding: 18px 40px;
