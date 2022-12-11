@@ -1,10 +1,7 @@
 
 .login-container{
-    /* background-color: var(--color-background); */
     background-image: url('../../assets/bgPC.png');
     background-size: cover;
-    /* background-position: center; */
-    /* background-size: contain; */
     background-repeat: no-repeat;
     height: 100vh;
     display: flex;
@@ -13,26 +10,26 @@
 
 }
 .login-form{
-    width: 18em;
-    height: 22.5em;
+    width: 20em;
+    height: 23em;
     margin-right: 17em;
     margin-top: 6em;
-    background-color: #85868A;
+    background-color: var(--background-color-login);;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
-    border: 0.15em solid #FBBC1A;
+    border: 0.15em solid var(--color-border-yellow);
     border-radius: 0.2em;
 
 }
 .login-img{
     width: 5em;
     height: 5em;
-    background-color: #85868A;
+    background-color: var(--background-color-login);
     border-radius: 50%;
-    border: 0.15em solid #FBBC1A;
+    border: 0.15em solid var(--color-border-yellow);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,13 +53,13 @@
 .form-group{
     display: flex;
     border-radius: 0.2em;
-    background: #F3F1F1;
+    background: var(--background-login);
     overflow: hidden;
 }
 
 .icon-username, .icon-password{
     padding: 0.5em 1em; 
-    background: #F3F1F1;
+    background:var(--background-login);
 }
 
 .form-group input {
@@ -75,7 +72,7 @@
 
 .icon {
     font-size: 1.5em;
-    background: #F3F1F1;
+    background: var(--background-login);
 }
 
 .form-check{
@@ -98,7 +95,15 @@
     background-color: var(--background-button);
     border-radius: 4px;
 }
+.form-message{
+    clear: both;
+    color: #f33a58;
+    font-size: 0.8em;
+  } 
 
+.form-group {
+    border: #f33a58;
+}
 @media(max-width:63.9375em){
     .login-container{
         justify-content: center;

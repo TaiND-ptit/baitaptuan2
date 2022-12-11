@@ -4,7 +4,8 @@ import ItemQuestion from "../ItemQuestion/ItemQuestion";
 import "./Exam.css";
 
 const quizData = [
-  { id: 1,
+  {
+    id: 1,
     question: "Câu 1: Which language runs in a web browser?",
     a: "A. Java",
     b: "B. C",
@@ -12,7 +13,8 @@ const quizData = [
     d: "D. JavaScript",
     correct: "d",
   },
-  { id: 2,
+  {
+    id: 2,
     question: "Câu 2: What does CSS stand for?",
     a: "A. Central Style Sheets",
     b: "B. Cascading Style Sheets",
@@ -20,7 +22,8 @@ const quizData = [
     d: "D. Cars SUVs Sailboats",
     correct: "b",
   },
-  { id: 3,
+  {
+    id: 3,
     question: "Câu 3: What does HTML stand for?",
     a: "A. Hypertext Markup Language",
     b: "B. Hypertext Markdown Language",
@@ -28,7 +31,8 @@ const quizData = [
     d: "D. Helicopters Terminals Motorboats Lamborginis",
     correct: "a",
   },
-  { id: 4,
+  {
+    id: 4,
     question: "Cấu 4. What year was JavaScript launched?",
     a: "A. 1996",
     b: "B. 1995",
@@ -38,63 +42,87 @@ const quizData = [
   },
 ];
 
-
-
 const Exam = () => {
-  const active = useState(1);
-  
+  let lenghtQuiz = quizData.length;
+  const [currentQuiz , setCurrentQuiz] = useState(0);
+  const [showListQuestion, setShowListQuestion] = useState(false)
+  let score = 0;
+
+  const currentQuizData = quizData[currentQuiz ];
+
+  const prevQuiz = () =>{
+    if(currentQuiz > 0){
+      setCurrentQuiz(currentQuiz - 1);
+    }
+  } 
+
+  const chooseQuestion = () =>{
+     console.log()
+  }
+
+  const nextQuiz = () =>{
+    if(currentQuiz < lenghtQuiz - 1 ){
+      setCurrentQuiz(currentQuiz + 1);
+    }
+  }
+
   return (
-    <div className="app">
-      <div className="examleft">
-        <div className="times">
-          <h3 className="nameExam">Kiểm tra an toàn bảo mật thông tin 2</h3>
-          <div className="time_remaining">Còn lại: 14 phút 22 giây</div>
-          <div className="time">
-            <input
-              id="progress"
-              className="progress"
-              type="range"
-              defaultValue={0}
-              step={1}
-              min={0}
-              max={100}
-            />
-          </div>
+    <div className="wrapper">
+      <div className="question-wrapper">
+        <div className="nav-question">
+          <p className="question-title">Kiem tra</p>
+          <p className="count-down">
+            Con lai:
+            <span> 14 phut</span>
+            <span> 22 giay</span>
+          </p>
+          <span className="time-container">
+            <span className="time-line"></span>
+          </span>
         </div>
-        <div className="questionnaire">
-          {quizData.map((question, index) => (
-            <div key={index}>
-              <h3 className="desc-question">{question.question}</h3>
-              <div className="choose-question">
-                <ItemQuestion data={question.a} />
-                <ItemQuestion data={question.b} />
-                <ItemQuestion data={question.c} />
-                <ItemQuestion data={question.d} />
-              </div>
+
+        <div className="question-container">
+          <div className="do-question">
+            <div className="name-question">{currentQuizData.question}</div>
+
+            <div className="list-question">
+              <ItemQuestion data={currentQuizData.a}/>
+              <ItemQuestion data={currentQuizData.b}/>
+              <ItemQuestion data={currentQuizData.c}/>
+              <ItemQuestion data={currentQuizData.d}/>
             </div>
-          ))}
-
-          <div className="btntransion">
-            <button className="btnprev">Câu trước</button>
-            <button className="btnnext">Câu sau</button>
           </div>
+    {/* button transion */}
+        <div className="btn-question">
+           <div className="btn-pc">
+              <button onClick={prevQuiz}>Câu trước</button>
+              <button onClick={nextQuiz}>Câu sau</button>
+           </div>
+           <button className="btn-mb"
+            onClick={()=>setShowListQuestion(true)}
+           >Chuyến đến</button>
+        </div>
+         
         </div>
       </div>
-      <div className="examright">
-        <div className="btn_questions">
-          {quizData.map((numQues, index)=>{
-            return ( <button className={numQues.id === index ? 'answering': 'active'}>{index+1}</button>)
+      <div className="Layout" 
+      style={{display: showListQuestion ? 'block' : 'none'}} 
+      onClick={()=>setShowListQuestion(false)}>
+      </div>
+      
+      <div className="number-question"
+      style={{display: showListQuestion ? 'none' : 'flex'}} 
+      >
+             <div className="btn-wrapper">
+             {quizData.map((numQues, index)=>{
+             return ( <button onClick={chooseQuestion()} className={numQues.id === currentQuiz + 1 ? 'answering': 'active'}>{index+1}</button>)
           })}
-          {/* <button className="active">1</button>
-          <button className="active">2</button>
-          <button className="answering">3</button> */}
-
+    
+              </div>
+              <button className="btn-submit">Nộp bài</button>
         </div>
-        <div className="btn_submit">
-          <Link to="/exam_finish">Submit</Link>
-        </div>
-      </div>
     </div>
+
   );
 };
 
