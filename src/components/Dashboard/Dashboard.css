@@ -131,6 +131,7 @@
     padding: 0.5em 1em;
     font-size: 0.8em;
     background: #FFFFFF;
+    cursor: pointer;
 }
 
 select {
@@ -193,10 +194,6 @@ select {
         top: 0;
         left: 0;
         bottom: 0;
-        /* transform: ${(props) =>
-            props.isShow ? "translateX(0)" : "translateX(-100%)"
- 
-        }; */
           transition: all 0.3s;
     }
 

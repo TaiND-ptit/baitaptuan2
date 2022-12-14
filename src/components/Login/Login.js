@@ -1,49 +1,67 @@
 import React, { useEffect, useRef, useState } from "react";
 import CAMERA from "../../assets/camera.png";
 import "./Login.css";
-import { Link, useNavigate } from "react-router-dom";
-import Dashboard from "../Dashboard/Dashboard";
-
-
-
+import { useNavigate, Navigate } from "react-router-dom";
+import isEmpty from 'validator/lib/isEmpty'
+import Users from '../../data/Users';
 
 const Login = () => {
-  const Users = [
-    { id: 1, username: "taind", password: "1234", isRememberMe: true },
-    { id: 2, username: "tu", password: "231", isRememberMe: true },
-    { id: 3, username: "admin", password: "admin", isRememberMe: true },
-  ];
 
   const history = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [checked, setChecked] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
-  const rememberMe = document.querySelector('.remember-me');
+  const [ischecked, setIsChecked] = useState(false);
+  const [errMsg, setErrMsg] = useState({});
 
-  useEffect(() => {
-    setErrMsg("");
-  }, []);
+  const handleRememberMe = (e) => {
+     setIsChecked(e.target.checked);
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setUsername("");
     setPassword("");
-    
+    const isValid = validateAll()
+    if(!isValid) return
+
     const userlogin = Users.filter((el, k) => {
         return el.username === username && el.password === password
+
     });
 
     if (userlogin.length === 0) {
         alert("Bạn đã nhập sai username hoặc password")
-    } else {
+    }else if(userlogin.length > 0 && ischecked){
+          localStorage.setItem('DataUser',JSON.stringify(userlogin))
+          history("/dashboard")
+    }
+    else {
 
         history("/dashboard")
-    }
-        
+    } 
+
+  if(username === localStorage.getItem('DataUser').username && password === localStorage.getItem('DataUser').password){
     
+    return <Navigate to={'/dashboard'}/>  
+  }
+
   };
+
+  const validateAll = () => {
+      const msg ={}
+      if(isEmpty(username)){
+           msg.username = 'Vui lòng nhập username';
+      }
+
+      if(isEmpty(password)){
+        msg.password = 'Vui lòng nhập password';
+      }
+      
+      setErrMsg(msg)
+      if(Object.keys(msg).length > 0) return false;
+      return true;
+  }
 
   return (
     <div className="login-container">
@@ -65,10 +83,10 @@ const Login = () => {
               autoComplete="off"
               onChange={(e) => setUsername(e.target.value)}
               value={username}
-              required
+              // required
             />
           </div>
-            {/* <div className="form-message">{errMsg}</div> */}
+            <div className="form-message">{errMsg.username}</div>
           <div className="form-group">
             <div className="icon-password">
               <i className="icon fas fa-lock"></i>
@@ -80,18 +98,19 @@ const Login = () => {
               id="password"
               onChange={(e) => setPassword(e.target.value)}
               value={password}
-              required
+              // required
             />
           </div>
-            {/* <div className="form-message">Vui lòng nhập đủ 6 kí tự</div> */}
+            <div className="form-message">{errMsg.password}</div>
           <div className="form-check">
             <input 
                type="checkbox"
+               onChange= {handleRememberMe}
                className="remember-me"
             />
             <div className="desc-login">Remember me</div>
           </div>
-          {/* <Link to="/dashboard" className="btn-login">Login</Link> */}
+
           <button className="btn-login">Login</button>
         </div>
       </form>

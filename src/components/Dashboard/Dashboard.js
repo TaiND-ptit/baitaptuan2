@@ -1,9 +1,64 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Dashboard.css";
 import BAR from "../../assets/button menu.png";
 import ItemResult from "../ItemResult/ItemResult";
+import data from "../../data/quiz"
+import { Navigate, useNavigate } from "react-router-dom";
 const Dashboard = () => {
+  const history = useNavigate();
+  const filterRef = useRef()
   const [showMenu, setShowMenu] = useState(false);
+  const [filter, setFilter] = useState('all');
+  const [search, setSearch] = useState('');
+  
+  const getDate = localStorage.getItem('DataUser')
+  const userParse = JSON.parse(getDate)
+ 
+  let dataQuiz = [];
+
+  let copyData = [...data];
+
+  // logout
+  const handleLogout = () => {
+    localStorage.removeItem('DataUser');
+    history(-1)
+  }
+
+  //filter 
+  switch(filter) {
+    case 'all' :
+      dataQuiz = copyData;
+      break
+    case 'easy' :
+      dataQuiz = copyData.filter((item) => {
+        return item.type === 'easy';
+      })
+      break
+    case 'normal' :
+      dataQuiz = copyData.filter((item) => {
+        return item.type === 'normal';
+      })
+      break
+    case 'difficult':
+      dataQuiz = copyData.filter((item) => {
+        return item.type === 'difficult'
+      })
+    break
+    default: dataQuiz = copyData;
+  }
+
+  
+  // Search
+  let dataSearch;
+  const handleSearch = () => {
+    dataSearch = data.filter((item) => {
+       return item.title.includes(search);
+  })
+   dataQuiz = [...dataSearch];
+  return dataQuiz;
+}
+
+ 
   return (
     <div className="wrapper">
       <header className="mobile-header">
@@ -18,19 +73,18 @@ const Dashboard = () => {
           setShowMenu(false);
         }}
         style={{display: showMenu ? 'block' : 'none'}}
-        // isShow={showMenu}
       ></div>
       <div className="info">
         <div className="info-img"></div>
         <div className="info-detail">
           <p>
-            User:<span>dff</span>
+            User:<span>{userParse[0].email}</span>
           </p>
           <p>
-            Point:<span>1234</span>
+            Point:<span>1000</span>
           </p>
           <div className="logout">
-            <div className="btn-logout">LOGOUT</div>
+            <div onClick={handleLogout} className="btn-logout">LOGOUT</div>
           </div>
         </div>
       </div>
@@ -38,26 +92,35 @@ const Dashboard = () => {
       <div className="dashboard-container">
         <div className="filter">
           <div className="search">
-            <input type="text" placeholder="Search" id="search" />
-            <div className="btn-search">
-              <div className="fas fa-search"></div>
+            <input 
+            type="text" 
+            placeholder="Search" 
+            id="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)} />
+            <div className="btn-search" >
+              <div className="fas fa-search" onClick={handleSearch}></div>
             </div>
           </div>
           {/* filter */}
-          <select name="level" id="level">
+          <select 
+          name="level" 
+          id="level"  
+          ref={filterRef}
+          onChange={() => setFilter(filterRef.current.value)}>
+            <option value="all">All</option>
             <option value="difficult">Difficult</option>
             <option value="normal">Normal</option>
-            <option value="opel">Easy</option>
-            <option value="audi">Audi</option>
+            <option value="easy">Easy</option>
           </select>
         </div>
-
+    
         <div className="test-container">
           <div className="list-item-result">
-            <ItemResult />
-            <ItemResult />
-            <ItemResult />
-            <ItemResult />      
+            {dataQuiz.map((question, index) => 
+              <ItemResult data={question} key={index}/>
+            )}
+
           </div>
         </div>
 
@@ -66,9 +129,9 @@ const Dashboard = () => {
              <i className="fas fa-chevron-left"/>
            </button>
            <button className="">1</button>
-           <button className="">1</button>
-           <button className="">1</button>
-           <button className="">1</button>
+           <button className="">2</button>
+           <button className="">3</button>
+           <button className="">4</button>
            <button>
              <i className="fas fa-chevron-right"/>
            </button>
