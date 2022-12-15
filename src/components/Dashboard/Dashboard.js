@@ -3,19 +3,15 @@ import "./Dashboard.css";
 import BAR from "../../assets/button menu.png";
 import ItemResult from "../ItemResult/ItemResult";
 import data from "../../data/quiz"
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const Dashboard = () => {
   const history = useNavigate();
-  const filterRef = useRef()
   const [showMenu, setShowMenu] = useState(false);
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
-  
+  const [dataQuiz, setDataQuiz] = useState(data);
   const getDate = localStorage.getItem('DataUser')
   const userParse = JSON.parse(getDate)
- 
-  let dataQuiz = [];
-
   let copyData = [...data];
 
   // logout
@@ -24,41 +20,43 @@ const Dashboard = () => {
     history(-1)
   }
 
+  
   //filter 
-  switch(filter) {
+
+const changeFilter = (newFilter) => {
+  setFilter(newFilter);
+  switch(newFilter) {
     case 'all' :
-      dataQuiz = copyData;
-      break
+      setDataQuiz(copyData) ;
+      break;
     case 'easy' :
-      dataQuiz = copyData.filter((item) => {
+      setDataQuiz(copyData.filter((item) => {
         return item.type === 'easy';
-      })
+      }))
       break
     case 'normal' :
-      dataQuiz = copyData.filter((item) => {
+      setDataQuiz(copyData.filter((item) => {
         return item.type === 'normal';
-      })
+      }))
       break
     case 'difficult':
-      dataQuiz = copyData.filter((item) => {
+      setDataQuiz(copyData.filter((item) => {
         return item.type === 'difficult'
-      })
-    break
-    default: dataQuiz = copyData;
+      }))
+    break;
+    default: setDataQuiz(copyData);
   }
 
-  
-  // Search
-  let dataSearch;
+}
+ 
+// search
   const handleSearch = () => {
-    dataSearch = data.filter((item) => {
-       return item.title.includes(search);
-  })
-   dataQuiz = [...dataSearch];
-  return dataQuiz;
+    setDataQuiz(data.filter((item) => {
+       return item.title.toLowerCase().includes(search.toLowerCase());
+  }))
+
 }
 
- 
   return (
     <div className="wrapper">
       <header className="mobile-header">
@@ -106,8 +104,8 @@ const Dashboard = () => {
           <select 
           name="level" 
           id="level"  
-          ref={filterRef}
-          onChange={() => setFilter(filterRef.current.value)}>
+          value={filter}
+          onChange={(e) => changeFilter(e.target.value)}>
             <option value="all">All</option>
             <option value="difficult">Difficult</option>
             <option value="normal">Normal</option>
@@ -117,6 +115,7 @@ const Dashboard = () => {
     
         <div className="test-container">
           <div className="list-item-result">
+            
             {dataQuiz.map((question, index) => 
               <ItemResult data={question} key={index}/>
             )}
